@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice on Auth</title>
+    <link rel="stylesheet" href="practice.css">
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>login</h2>
+        <hr style="color: black;">
+        <label class="l1">email</label>
+        <input id="input1" type="email">
+        <label class="l2">password</label>
+        <input id="input2" type="password">
+        <button id="login">login</button>
+    </div>
+</body>
+<script>
+
+//   "charles.morris@reqres.in",
+//    "pistol"
+    
+
+
+let btn=document.querySelector("#login")
+btn.addEventListener('click',()=>{
+
+    let email=document.querySelector("#input1").value
+    let password=document.querySelector("#input2").value
+    axios.post(
+    'https://reqres.in/api/login',
+    {
+        "email":email,
+        "password":password
+    }
+   ).then(function(response){
+         // handle success       
+            let token=response.data.token;
+            localStorage.setItem("token",token)
+            console.log("token recived",token)
+            window.location="loginSuccess.html"
+            
+   }).catch(error=>{
+    alert(error.response.data.error)
+   })
+})
+
+
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="promises.css">
+    <title>Promises</title>
+</head>
+<body>
+    <div class="content">
+        
+    </div>
+</body>
+<script>
+    //promises is a way to handle asysc code
+    //example
+    let p =new Promise(function(resolve,reject){
+        isSuccess=true
+        if(isSuccess){
+            console.log('calling resolve')
+            resolve()
+        }else{
+            console.log('calling reject')
+            reject()
+        }
+    })
+    p.then(function(){
+        console.log('i\'m calling after resolving ')
+    }).catch(function(){
+        console.log('error')
+    })
+  console.log('i can\'t wait then ')
+  //  note=> then statment take a few minute to call
+  //  after resolving it's mean that if you want to print any statment
+  //  after it may be print before then 
+  //
+</script>
+</html>

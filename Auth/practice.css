@@ -1,0 +1,38 @@
+body{
+ 
+}
+.container{
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    flex-direction: column;
+    background-color: gray;
+    width: 200px;
+    height: 260px;
+    margin: 10% auto;
+    padding: 10px;
+}
+hr{
+    color: black;
+    border: 1px solid #ccc;
+    width: 150px;
+    margin-bottom: 20px;
+}
+h2{
+    text-align: center;
+}
+.l1{
+
+    margin-bottom: 15px;
+}
+.l2{
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+button{
+    margin-top: 15px;
+    margin-bottom: 20px;
+    width: fit-content;
+    cursor: pointer;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>asyncAwait</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //async is s keyword used before define a function to make function return promises without using resolve
+    //await is s keyword used before calling any function return promises instead of then=wait for completing this row before you move to next row
+    //await should be inside async function to work 
+
+    //before async and await
+    function getUsers(){
+      return new Promise((resolve),(reject)=>{
+        fetch("https://jsonplaceholder.typicode.com/users")
+        .then((response)=>response.json)
+        .then((json)=>{
+            resolve(json)
+        })
+       })
+    }
+    //after async and await
+    async function getUsers(){
+        fetch("https://jsonplaceholder.typicode.com/users")
+        .then((response)=>response.json)
+        .then((json)=>{
+            return "using async"
+        })
+      
+    }
+    //after async and await
+    async function getUsers(){
+        let response=await fetch("https://jsonplaceholder.typicode.com/users")
+        let json=await response.json()
+        return json
+    }
+    async function getData(){
+        await getUsers()
+        let response=await fetch("https://jsonplaceholder.typicode.com/posts")
+        let json=await response.json()
+        return json
+    }
+     //async and await can make code easier that promise
+  
+</script>
+</html>

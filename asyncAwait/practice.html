@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice on async & await</title>
+</head>
+<body>
+  <h3 class="title1" style="visibility: hidden;">Title 1</h3>
+  <h3 class="title2" style="visibility: hidden;">Title 2</h3>
+  <h3 class="title3" style="visibility: hidden;">Title 3</h3>
+  <h3 class="title4" style="visibility: hidden;">Title 4</h3>  
+</body>
+<script>
+    // new Promise((resolve,reject)=>{
+    //     setTimeout(()=>{
+    //         document.querySelector(".title1").style.visibility='visible'
+    //         resolve()
+    //     },1000)
+    // })
+    // .then(()=>{
+    //     return new Promise((resolve,reject)=>{
+    //     setTimeout(()=>{
+    //         document.querySelector(".title2").style.visibility='visible'
+    //         resolve()
+    //     },1000)
+    // })
+    // })
+    // .then(()=>{
+    //     return new Promise((resolve,reject)=>{
+    //     setTimeout(()=>{
+    //         document.querySelector(".title3").style.visibility='visible'
+    //         resolve()
+    //     },1000)
+    // })
+    // })
+    // .then(()=>{
+    //     return new Promise((resolve,reject)=>{
+    //     setTimeout(()=>{
+    //         document.querySelector(".title4").style.visibility='visible'
+    //         resolve()
+    //     },1000)
+    // })
+    // })
+    //////////////////////////////////////////////////////////////////////
+    //convert promises to async & await
+    async function showTitle(){
+        await new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                document.querySelector(".title1").style.visibility='visible'
+                resolve()
+         },1000)
+     }) 
+     await new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            document.querySelector(".title2").style.visibility='visible'
+            resolve()
+        },1000)
+    })
+     await new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            document.querySelector(".title3").style.visibility='visible'
+            resolve()
+        },1000)
+    })
+     new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            document.querySelector(".title4").style.visibility='visible'
+            resolve()
+        },1000)
+    })
+    }
+   showTitle()
+</script>
+</html>

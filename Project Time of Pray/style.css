@@ -1,0 +1,80 @@
+body{
+    background: linear-gradient(45deg,#240165,#05001c);
+}
+.container{
+    margin: 15px;
+}
+.container .text{
+    font-size: 50px;
+    color: #fff;
+}
+.container .text h2{
+    margin-bottom: 10px;
+}
+.container .text p{
+    margin: 0;
+    color: #ccc;
+}
+.card{
+    height: 200px;
+    width: 150px;
+    background-color: red;
+
+}
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card h3{
+    color: #fff;
+    background: linear-gradient(45deg,#240165,#05001c);
+    margin: 0;
+    padding: 3px;
+    height: 25px;
+    text-align: center;
+}
+.card p{
+    color: black;
+    background-color: #fff;
+    height: 175px;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+.selection{
+    text-align: center;
+    margin: 80px auto;
+    color: #fff;
+    background: none;
+}
+.selection select{
+    width: 250px;
+    background: none;
+    color: #fff;
+    padding: 5px;
+    border-radius: 20px;
+}
+.selection select option{
+    background-color: #240165;
+    font-size: 20px;
+}
+.left-text{
+    color: #ccc;
+    text-align: left;
+    margin-top: -150px;
+    margin-bottom: 130px;
+    font-size: 30px;
+}
+@media (max-width:776px) {
+    .container .box{
+        display: flex;
+        flex-direction: column;
+    }
+    .container .box .card{
+        margin-top: 30px;
+    }
+}

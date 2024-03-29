@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Time of Pray</title>
+</head>
+
+<body dir="rtl">
+  
+    <div class="container">
+      <div class="text">
+        <h2 class="city-name">الدقهلية</h2>
+        <p class="day"> الجمعةSep 2022</p>
+      </div>
+      <div class="left-text">
+        <p class="number"> </p>
+      </div>
+      <hr style="border-color: #5200e1; margin-bottom: 50px;">
+      <div class="box">
+        <div class="card">
+          <h3>الفجر</h3>
+          <p class="Fajr"></p>
+        </div>
+        <div class="card">
+          <h3>الشروق</h3>
+          <p class="Sunrise"></p>
+        </div>
+        <div class="card">
+          <h3>الظهر</h3>
+          <p class="Dhuhr"></p>
+        </div>
+        <div class="card">
+          <h3>العصر</h3>
+          <p class="Asr"></p>
+        </div>
+        <div class="card">
+          <h3>المغرب</h3>
+          <p class="Maghrib"></p>
+        </div>
+        <div class="card">
+          <h3>العشاء</h3>
+          <p class="Isha"></p>
+         
+        </div>
+      </div>
+      <div class="selection">
+        <select style="font-size: 25px;" class="city-select">
+
+        </select>
+      </div>
+    </div>
+    <p style="color:#ccc;text-align: center;" class="footer">copyright @Mohamed Amr 2024</p>
+</body>
+<script src="../node_modules/axios/dist/axios.min.js"></script>
+<script>
+  let cities=[
+    {
+      arabicName:"الدقهلية",
+      name:"Ad Daqahlīyah"
+    },	
+    {
+      arabicName:"الرياض",
+      name:"Ar Riyāḑ"
+    },
+    {
+      arabicName:"القاسم",
+      name:"Al Qaşīm"
+    },
+    {
+      arabicName:"مكة المكرمة",
+      name:"Makkah al Mukarramah"
+    },
+ 
+  ]
+  for (city of cities){
+    let content=`
+    <option>${city.arabicName}</option>
+    `
+    document.querySelector('.city-select').innerHTML+=content
+  }
+  document.querySelector('.city-select').addEventListener('change',()=>{
+    
+   let cityName="";
+
+   for(let city of cities){
+
+      if(city.arabicName==document.querySelector('.city-select').value){
+
+      cityName=city.name
+    }
+   }
+    getPlayersTimeCity(cityName)
+
+    document.querySelector(".city-name").innerHTML=document.querySelector('.city-select').value;
+    
+  })
+  function getPlayersTimeCity(cityName){
+
+    let params={
+    country:"SA",
+    city:cityName
+  }
+  axios.get('http://api.aladhan.com/v1/timingsByCity', {
+    params:params
+  })
+  .then(function (response) {
+   
+    const timings=response.data.data.timings
+
+    calcTime(".Fajr",timings.Fajr)
+    calcTime(".Sunrise",timings.Sunrise)
+    calcTime(".Dhuhr",timings.Dhuhr)
+    calcTime(".Asr",timings.Asr)
+    calcTime(".Maghrib",timings.Maghrib)
+    calcTime(".Isha",timings.Isha)
+
+    const readable=response.data.data.date.readable
+    const weekday=response.data.data.date.hijri.weekday.ar
+    document.querySelector('.day').innerHTML=weekday+" "+ readable;
+
+    const number=response.data.data.date.hijri.day
+    const numberAr=response.data.data.date.hijri.month.ar
+    const year=response.data.data.date.hijri.year
+    document.querySelector(".number").innerHTML=number+" "+numberAr+" "+year
+  }) 
+  .catch(function (error) {
+
+    console.log(error);
+
+  })
+ 
+  }
+ getPlayersTimeCity("Ad Daqahlīyah")
+ 
+  function calcTime(id,time){
+
+  document.querySelector(id).innerHTML=time 
+  }
+
+</script>
+</html>
